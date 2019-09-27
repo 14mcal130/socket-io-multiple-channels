@@ -3,17 +3,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
 <script type="text/javascript">
-    var name = "";
+    var name = "user2";
     var socket = io('http://localhost:8089');
     $(document).ready(function () {
-        name = getCookie("Client");
-
-        if (name == null || name == "null") {
-            return false;
-        }
-        // socket = io.connect();
+       // socket = io.connect();
         socket.emit('user2', name, function (data) {
-
         });
     });
     socket.on('user2', function (data) {
@@ -21,14 +15,5 @@
 
     });
 
-    function getCookie(name) {
-        var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-        return v ? v[2] : null;
-    }
-    function setCookie(name, value, days) {
-        var d = new Date;
-        d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
-        document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
-    }
 
 </script>
